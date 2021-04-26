@@ -1,18 +1,37 @@
 
 public class Main {
+	enum Level {
+		low,
+		medium,
+		high
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("Hello Java!");
-		
-		// create an object of Outer class CPU
-		CPU cpu = new CPU();
-		
-		// create an object of inner class Processor using outer class
-		CPU.Processor processor = cpu.new Processor();
-		
-		// create an object of inner class RAM using outer class CPU
-		CPU.RAM ram = cpu.new RAM();
-		System.out.println("Processor Cache = " + processor.getCache());
-		System.out.println("Ram Clock speed = " + ram.getClockSpeed());
+		Dog dog = new Dog();
+		System.out.println(Animal.randomOne);
+		System.out.println(Level.medium);
 		
 	}
+}
+
+interface Animal {
+	String randomOne = "Random One String";
+	
+	static String randomTwo = "Random static two string";
+	
+	static public void methodThree() {
+		System.out.println("Hello method Three");
+	}
+	public default void methodOne() {
+		System.out.println("Hello Abstraction!");
+	}
+	
+	public default void methodTwo() {
+		System.out.println("Hello method Two");
+	}
+}
+
+class Dog implements Animal {
+	
 }
