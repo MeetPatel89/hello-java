@@ -86,8 +86,17 @@ public class Main {
 		engine.setEngine();
 		System.out.println(engine.getEngineType());
 		MotherBoard motherboard = new MotherBoard("Random Model");
-		MotherBoard.USB usb = motherboard.new USB();
-		System.out.println(usb.getTotalPorts());
+		
+		// object creation of the outer Animal class
+		Animal animal = new Animal();
+		
+		// object creation of the non-static class
+		Animal.Reptile reptile = animal.new Reptile();
+		
+		Animal.Mammal mammal = new Animal.Mammal();
+		mammal.displayInfo();
+		reptile.displayInfo();
+		
 		
 	}
 }
