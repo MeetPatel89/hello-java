@@ -44,6 +44,7 @@ class Main2 {
 		System.out.println(Random.m);
 		Random.randomMethod();
 		random.randomMethod();
+		System.out.println(random.m);
 		
 	}	
 }
