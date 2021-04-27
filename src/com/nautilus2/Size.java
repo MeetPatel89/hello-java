@@ -1,13 +1,24 @@
 package com.nautilus2;
 
 enum Size {
-	SMALL,
-	MEDIUM,
-	LARGE,
-	EXTRALARGE;
+	
+	// enum constants calling the enum constructors
+	SMALL("The size is small."),
+	MEDIUM("The size is medium."),
+	LARGE("The size is large."),
+	EXTRALARGE("The size is extra large.");
+	
+	private final String pizzaSize;
+	
+	// private enum constructor
+	private Size(String pizzaSize) {
+		this.pizzaSize = pizzaSize;
+	}
 	
 	public String getSize() {
 		
+		
+		/*
 		// this will refer to the instantiated object
 		switch(this) {
 		case SMALL:
@@ -21,15 +32,16 @@ enum Size {
 		default:
 			return null;
 		}
+		*/
+		
+		return pizzaSize;
 	}
 	
+}
+
+class sizeMain {
 	public static void main(String[] args) {
-		
-		// call getSize()
-		// after instantiating an enum object (constant)
-		System.out.println("The size of the pizza is " + Size.SMALL.getSize());
-		System.out.println(Size.SMALL.compareTo(LARGE));
-		Size[] enumArray = Size.values();
-		System.out.println(enumArray[4]);
+		Size size = Size.EXTRALARGE;
+		System.out.println(size.getSize());
 	}
 }
