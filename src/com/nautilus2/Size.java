@@ -43,5 +43,7 @@ class sizeMain {
 	public static void main(String[] args) {
 		Size size = Size.EXTRALARGE;
 		System.out.println(size.getSize());
+		Class c1 = int.class;
+		System.out.println(c1.getName());
 	}
 }

@@ -1,4 +1,11 @@
 package com.nautilus2;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Parameter;
+import java.util.Arrays;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Field;
+
 
 class Car {
 	String carName;
@@ -52,12 +59,7 @@ class MotherBoard {
 		int usb3 = 1;
 		int getTotalPorts() {
 			
-			// accessing the variable model of the outer class
-			if (MotherBoard.this.model.equals("MSI")) {
-				return 4;
-			} else {
-				return usb2 + usb3;	
-			}
+			return usb2 + usb3;
 		}	
 	}
 }
@@ -67,36 +69,60 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Hello Nested and Inner Classes");
 		
-		// create object of Outer class CPU
-		CPU cpu = new CPU();
+		Dog dog = new Dog("Rocky", 4);	
+		Class dogClass = dog.getClass();
 		
-		// create an object of inner class Processor using outer class
-		CPU.Processor processor = cpu.new Processor();
+		System.out.println("Class Name: " + dogClass.getName());
 		
-		// create an object of inner class Processor RAM using outer class CPU
-		CPU.RAM ram = cpu.new RAM();
-		System.out.println("Processor Cache = " + processor.getCache());
-		System.out.println("Ram Clock speed = " + ram.getClockSpeed());
+		System.out.println("Interface? " + dogClass.isInterface());
 		
-		// create an object of the outer class Car
-		Car car1 = new Car("Crysler", "4WD");
+		System.out.println("Array? " + dogClass.isArray());
 		
-		// create an object of inner class using the outer class
-		Car.Engine engine = car1.new Engine();
-		engine.setEngine();
-		System.out.println(engine.getEngineType());
-		MotherBoard motherboard = new MotherBoard("Random Model");
+		System.out.println("\nConstructors: ");
+		Constructor[] constructors = dogClass.getConstructors(); 	
+		for (Constructor constructor: constructors) {
+			System.out.println("constructor name: " + constructor.getName());
+			System.out.println("---params---");
+			if (constructor.getParameterCount() == 0) {
+				System.out.println("no-arg constructor");
+			} else {
+				Parameter[] parameters = constructor.getParameters();
+				for (Parameter parameter: parameters) {
+					System.out.println(parameter.getName() + ": " + parameter.getType());
+				}
+			}
+		}	
 		
-		// object creation of the outer Animal class
-		Animal animal = new Animal();
+		// display all public methods
+		System.out.println("Methods");
+		Method[] methods = dogClass.getMethods();
+		int i = 1;
+		for (Method method: methods) {
+			
+			System.out.println("Method #" + i + " " + Modifier.toString(method.getModifiers()) + " " + method.getReturnType().getName() + " " + method.getName() + " - " + Arrays.toString(method.getParameters()));
+			i++;
+		}
 		
-		// object creation of the non-static class
-		Animal.Reptile reptile = animal.new Reptile();
+		System.out.println("\n");
 		
-		Animal.Mammal mammal = new Animal.Mammal();
-		mammal.displayInfo();
-		reptile.displayInfo();
+		// display all methods except inherited methods regardless of their access modifiers
+		System.out.println("Declared Methods");
+		Method[] declaredMethods = dogClass.getDeclaredMethods();
+		int j = 1;
+		for (Method method: declaredMethods) {
+			
+			System.out.println("Method #" + j + " " + Modifier.toString(method.getModifiers()) + " " + method.getReturnType().getName() + " " + method.getName() + " - " + Arrays.toString(method.getParameters()));
+			j++;
+		}
 		
-		
+		// print the fields
+		System.out.println("\n");
+		System.out.println("Fields");
+		Field[] fields = dogClass.getFields();
+		int k = 1;
+		for (Field field: fields) {
+			System.out.println("Fields #" + k + " " + Modifier.toString(field.getModifiers()) + " " + field.getType() + " " + field.getName());
+			k++;
+		}
 	}
 }
