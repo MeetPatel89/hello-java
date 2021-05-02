@@ -1,6 +1,5 @@
 package com.nautilus1;
 
-import java.io.IOException;
 
 // Java program to demonstrate how exception is thrown
 // how the runtime system searches the call stack

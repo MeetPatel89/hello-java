@@ -1,11 +1,11 @@
 package com.nautilus1;
+
 import java.io.*;
-import java.util.Arrays;
 
 public class Main {
 	
-	
-	public static void main(String[] args)  {
+	public static void main(String[] args) throws IOException  {
 		System.out.println("Hello Main...");
+		 	
 	}
 }
