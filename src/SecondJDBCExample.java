@@ -7,11 +7,6 @@ public class SecondJDBCExample {
 		String password = "Brotherchoksi12#";
 		String query = "SELECT Department, FirstName, LastName, PassOutYear, UniversityRank FROM EngineeringStudents";
 		
-		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 		
 		try {
 			Connection conn = DriverManager.getConnection(url, username, password);
