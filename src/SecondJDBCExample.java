@@ -4,7 +4,7 @@ public class SecondJDBCExample {
 	public static void main(String[] args) throws SQLException {
 		String url = "jdbc:mysql://localhost/University";
 		String username = "guest";
-		String password = "Brotherchoksi12#";
+		String password = "Randomguest12#";
 		String query = "SELECT Department, FirstName, LastName, PassOutYear, UniversityRank FROM EngineeringStudents";
 		
 		
