@@ -3,9 +3,10 @@ package com.nautilus.csvfilehandling;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URL;
+import java.util.List;
 
 import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
 
 public class CSVFileHandler {
 
@@ -36,13 +37,32 @@ public class CSVFileHandler {
 		}
 	}
 
-	public static void main(String[] args) {
-		System.out.println("Hello CSVFileHandler!");
+	public static void readAllDataAtOnce(String file) {
 		try {
-			CSVFileHandler.readDataLineByLine("/home/nautilusshell/eclipse-workspace/April12Training/SeleniumDemoQa/target/test-classes/basses.csv");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
+			FileReader fileReader = new FileReader(file);
+
+			CSVReader csvReader = new CSVReaderBuilder(fileReader).withSkipLines(1).build();
+
+			List<String[]> allData = csvReader.readAll();
+
+			for (String[] row : allData) {
+				for (String cell : row) {
+					System.out.println(cell + "\t");
+				}
+				System.out.println();
+			}
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void main(String[] args) {
+		System.out.println("Hello CSVFileHandler!");
+
+		CSVFileHandler.readAllDataAtOnce(
+				"/home/nautilusshell/eclipse-workspace/April12Training/SeleniumDemoQa/target/test-classes/basses.csv");
+
 	}
 }
